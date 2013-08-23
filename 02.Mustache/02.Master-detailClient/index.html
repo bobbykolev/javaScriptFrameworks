@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/libs/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/libs/mustache.js"></script>
+    <script src="Scripts/app/class.js"></script>
+    <script src="Scripts/app/controller.js"></script>
+    <script src="Scripts/app/http-requester.js"></script>
+    <style>
+        body
+        {
+            font-family: 'Minion Pro', Tahoma, Verdana, Arial, sans-serif;
+            font-size: 18px;
+        }
+        table
+        {
+            width: 700px;
+            box-shadow: 2px 2px 2px #ccc;
+            border-collapse: collapse;
+        }
+        td
+        {
+            border: 1px dotted green;
+            padding: 10px;
+        }
+        #marks
+        {
+            padding-top: 4px;
+            margin-top: 4px;
+            font-size: 15px;
+            border-top: 1px dotted green;
+        }
+    </style>
+</head>
+<body>
+    <script type="x-mustache-template" id="student-template">	
+        <td>
+			<div class="student">
+                <strong>Full name: </strong>{{firstName}} {{lastName}}
+                <br />
+			    <strong>Age: </strong>{{age}}
+                <strong>Grade: </strong>{{grade}}
+            </div>
+            <div id="marks" style="display:none;">
+                {{#marks}}
+                    <strong>{{subject}} </strong>{{score}}
+                    <br />
+                {{/marks}}
+            </div>
+        </td>
+    </script>
+    <div id="students">
+        <script>
+            var students = httpRequester.getJSON("http://localhost:23332/api/students",
+                function (data) {
+                    var studentTemplate = Mustache.compile(document.getElementById("student-template").innerHTML);
+
+                    var tableView = controls.getTableView(data);
+
+                    var tableViewHtml = tableView.render(studentTemplate, 4);
+                    document.getElementById("students").innerHTML = tableViewHtml;
+                    $("#students").on("click", ".student", function () {
+                        var marks = $(this).siblings().first().toggle()
+                    });
+                });
+        </script>
+    </div>
+</body>
+</html>

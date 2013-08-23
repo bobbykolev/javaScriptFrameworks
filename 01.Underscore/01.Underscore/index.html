@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Scripts/style.css" rel="stylesheet" />
+    <script src="Scripts/underscore.min.js"></script>
+</head>
+<body>
+    <h1>underscore.js</h1>
+    <div>
+        <span>
+            <label for="check">Show/hide conditions.</label><input type="checkbox" id="check" name="check"></span>
+        <span id="task">01.Write a method that from a given array of students finds all students whose first name is before its last name alphabetically. Print the students in descending order by full name. Use Underscore.js
+            <br>
+            02.Write function that finds the first name and last name of all students with age between 18 and 24. Use Underscore.js
+            <br>
+            03.Write a function that by a given array of students finds the student with highest mark;
+            <br>
+            04.Write a function that by a given array of animals, groups them by species and sorts them by number of legs;
+            <br>
+            05.By a given array of animals, find the total number of legs
+Each animal can have 2, 4, 6, 8 or 100 legs;
+            <br>
+            06.By a given collection of books, find the most popular author (the author with the biggest number of books);
+            <br>
+            07.By an array of people find the most common first and last name. Use underscore;
+        </span>
+        <textarea id="output" placeholder="output" disabled></textarea>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        document.getElementById("check").onclick = function () {
+            if (document.getElementById("check").checked) {
+                document.getElementById("task").style.display = "block";
+            } else {
+                document.getElementById("task").style.display = "none";
+            }
+        }
+        document.getElementById("task").style.display = "none";
+    }
+</script>
+<script src="Scripts/script.js"></script>
+</html>
